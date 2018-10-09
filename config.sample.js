@@ -3,4 +3,10 @@ module.exports = {
   group: -123456789,
   repositoryUrl: 'https://github.com/gyteng/git-monitor-bot.git',
   repositoryName: 'git-monitor-bot',
+  redis: {
+    host: '127.0.0.1',
+    port: 6379,
+    password: null,
+    db: 0,
+  },
 };

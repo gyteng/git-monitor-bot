@@ -18,24 +18,14 @@ const getNewCommits = async () => {
     return f.startsWith('refs/remotes/');
   });
   await repository.fetchAll();
-  // await repository.mergeBranches('master', 'origin/master');
   const commits = {};
   for(const remote of remotes) {
     const remoteName = remote.split('refs/remotes/')[1];
     const localName = remoteName.split('origin/')[1];
-    // console.log(localName, remoteName);
-    // await repository.mergeBranches(localName, remoteName);
     const commit = await repository.getBranchCommit(remoteName);
-    console.log(localName, commit.sha());
+    // console.log(localName, commit.sha());
     commits[localName] = commit;
   };
-  // const commit = await repository.getBranchCommit('master');
-  // // const diffs = await commit.getDiff();
-  // // diffs.forEach(diff => {
-  // //   const delta = diff.getDelta(0);
-  // //   console.log(delta.nfiles());
-  // // });
-  // return commit;
   return commits;
 };
 
