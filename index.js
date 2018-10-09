@@ -6,3 +6,5 @@ const schedule = later.parse.text(text);
 later.setInterval(() => {
   git.init();
 }, schedule);
+
+// git.init();
