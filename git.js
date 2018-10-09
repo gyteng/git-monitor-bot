@@ -17,19 +17,26 @@ const getNewCommits = async () => {
   await repository.fetchAll();
   await repository.mergeBranches('master', 'origin/master');
   const commit = await repository.getBranchCommit('master');
-  console.log(commit.message());
-  console.log(commit.sha());
+  // const diffs = await commit.getDiff();
+  // diffs.forEach(diff => {
+  //   const delta = diff.getDelta(0);
+  //   console.log(delta.nfiles());
+  // });
+  return commit;
+  
+};
+
+const compareCommit = async commit => {
   const isNewCommit = await redis.setCommitShaAndCompare(commit.sha());
   if(isNewCommit) {
-    await telegram.sendMessage(commit.message() + commit.sha());
+    await telegram.sendCommitMessage(commit);
   }
 };
 
 const init = async () => {
   await cloneIfNotExists();
-  await getNewCommits();
+  const commit = await getNewCommits();
+  await compareCommit(commit);
 };
-
-// init();
 
 exports.init = init;
