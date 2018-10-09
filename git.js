@@ -13,9 +13,16 @@ const cloneIfNotExists = async () => {
 const getNewCommits = async () => {
   const repository = await Git.Repository.open(`./repository/${ config.repositoryName }`);
   await repository.fetchAll();
+  await repository.mergeBranches('master', 'origin/master');
+  const commit = await repository.getBranchCommit('master');
+  console.log(commit.message());
 };
 
-(async () => {
+const init = async () => {
   await cloneIfNotExists();
   await getNewCommits();
-})();
+};
+
+init();
+
+exports.init = init;
