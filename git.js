@@ -17,7 +17,7 @@ const getNewCommits = async () => {
   const remotes = (await repository.getReferenceNames(1)).filter(f => {
     return f.startsWith('refs/remotes/');
   });
-  // await repository.fetchAll();
+  await repository.fetchAll();
   // await repository.mergeBranches('master', 'origin/master');
   const commits = {};
   for(const remote of remotes) {
@@ -26,7 +26,7 @@ const getNewCommits = async () => {
     // console.log(localName, remoteName);
     // await repository.mergeBranches(localName, remoteName);
     const commit = await repository.getBranchCommit(remoteName);
-    // console.log(localName, commit.sha());
+    console.log(localName, commit.sha());
     commits[localName] = commit;
   };
   // const commit = await repository.getBranchCommit('master');
