@@ -1,7 +1,7 @@
 const Git = require('nodegit');
 const config = require('./config');
 const fs = require('fs');
-const redis = require('./redis')
+const redis = require('./redis');
 const telegram = require('./telegram');
 
 const cloneIfNotExists = async () => {
