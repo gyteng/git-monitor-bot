@@ -15,7 +15,7 @@ const sendMessage = async message => {
 
 const sendCommitMessage = async (branch, commit) => {
   let message = '';
-  message += '*' + commit.author().name() + '* create a new commit in [ *' + branch + '* ] at ' + new Date(commit.time() * 1000) + '\n';
+  message += '*' + commit.author().name() + '* create a new commit in \[ *' + branch + '* \] at ' + new Date(commit.time() * 1000) + '\n';
   message += 'sha: ' + commit.sha() + '\n';
   message += 'msg: ' + commit.message() + '\n';
   return rp({
