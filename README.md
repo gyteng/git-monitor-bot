@@ -10,3 +10,6 @@ a git commit monitor base on a telegram bot.
 4. Make a new telegram group and pull your bot in it.
 5. Rename `config.sample.js` to `config.js`
 6. `npm run start`
+
+
+nothing
